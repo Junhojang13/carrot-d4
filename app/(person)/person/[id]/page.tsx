@@ -1,5 +1,5 @@
-import { API_URL } from "../../../(home)/page";
 import Image from "next/image";
+const API_URL = "https://billions-api.nomadcoders.workers.dev/";
 
 async function getPerson(id: string) {
   const response = await fetch(`${API_URL}/person/${id}`);
