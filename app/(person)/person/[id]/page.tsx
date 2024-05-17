@@ -34,33 +34,23 @@ export default async function PersonDetail({
       </div>
       <div className="container text-white bg-neutral-900 ml-12 mr-12 mb-12 w-full">
         <h1 className="text-3xl mt-5 mb-4 font-bold">Financial Assets</h1>
-        <table className="table-auto w-full">
-          <thead>
-            <tr>
-              <th className="px-4 py-2">Ticker</th>
-              <th className="px-4 py-2">Shares</th>
-              <th className="px-4 py-2">Exercise Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {person.financialAssets.map(
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {person.financialAssets.map(
               (asset: {
                 ticker: string;
                 numberOfShares: number;
                 exerciseOptionPrice?: number | undefined;
               }) => (
-                <tr key={asset.ticker}>
-                  <td className="border px-4 py-2">{asset.ticker}</td>
-                  <td className="border px-4 py-2">{asset.numberOfShares}</td>
-                  <td className="border px-4 py-2">
-                    {asset.exerciseOptionPrice || "N/A"}
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
+            <div key={asset.ticker}
+              className="bg-neutral-800 p-4 rounded-lg shadow-md"
+            >
+              <h2 className="text-xl font-bold">{asset.ticker}</h2>
+              <h2 className="text-lg">Shares: {asset.numberOfShares}</h2>
+              {asset.exerciseOptionPrice !== undefined && <h2 className="text-lg">Exercise Price: {asset.exerciseOptionPrice}</h2>}
+            </div>
+          ))}
+            </div>
+            </div>
     </main>
   );
 }
