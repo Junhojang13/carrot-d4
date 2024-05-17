@@ -20,11 +20,6 @@ export interface Person {
   industries: string[];
   squareImage: string;
   bio: string;
-  financialAssets: {
-    ticker: string;
-    numberOfShares: number;
-    exerciseOptionPrice?: number;
-  }[];
 }
 
 export default async function HomePage() {
@@ -32,14 +27,13 @@ export default async function HomePage() {
   return (
     <div className="text-white flex flex-row flex-wrap justify-evenly mt-3">
       {people.map((person: Person) => (
-        <Link key={person.id} href={`/person/${person.id}`}>
-          <div>
+        <Link key={person.id} href={`/person/${person.id}`} className="transition-transform hover:scale-105">
+          <div className="m-2 container">
             <Image
               src={person.squareImage}
               alt={person.name}
               height={300}
               width={300}
-              className="transition-transform hover:scale-105"
             />
             <h1>{person.name}</h1>
             <h1>Networth: {Math.trunc(person.netWorth / 1000)} Billion</h1>
